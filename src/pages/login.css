@@ -1,0 +1,192 @@
+/* Umumiy sahifa uchun fonda har xil gradientlarda dumaloq elementlar */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    45deg,
+    #0f0f0f,
+    #1c1c1c
+  ); /* Fonda qoraroq gradient */
+  backdrop-filter: blur(20px);
+}
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  animation: float 10s infinite ease-in-out;
+  text-align: center;
+  padding: 20px; /* Katta padding qo'shildi */
+}
+
+.circle:nth-child(1) {
+  width: 180px; /* Kattaroq dumaloq */
+  height: 180px; /* Kattaroq dumaloq */
+  top: 10%; /* Sahifaning yuqori qismida */
+  left: 10%;
+  background: radial-gradient(circle, #333333, #555555); /* JavaScript */
+}
+
+.circle:nth-child(2) {
+  width: 220px; /* Kattaroq dumaloq */
+  height: 220px; /* Kattaroq dumaloq */
+  top: 5%; /* Sahifaning yuqori qismida */
+  right: 10%;
+  background: radial-gradient(circle, #222222, #444444); /* TypeScript */
+}
+
+.circle:nth-child(3) {
+  width: 200px; /* Kattaroq dumaloq */
+  height: 200px; /* Kattaroq dumaloq */
+  bottom: 1%; /* Sahifaning pastki qismida */
+  left: 38%;
+  background: radial-gradient(circle, #2a2a2a, #4a4a4a); /* React */
+}
+
+.circle:nth-child(4) {
+  width: 240px; /* Kattaroq dumaloq */
+  height: 240px; /* Kattaroq dumaloq */
+  top: 40%; /* Sahifaning o'rtasida */
+  right: 20%;
+  background: radial-gradient(circle, #191919, #393939); /* Next.js */
+}
+
+.circle:nth-child(5) {
+  width: 200px; /* Kattaroq dumaloq */
+  height: 200px; /* Kattaroq dumaloq */
+  bottom: 35%; /* Sahifaning pastki qismida */
+  right: 65%;
+  background: radial-gradient(circle, #0f0f0f, #2f2f2f); /* Vite */
+}
+
+.circle:nth-child(6) {
+  width: 180px; /* Kattaroq dumaloq */
+  height: 180px; /* Kattaroq dumaloq */
+  bottom: 30%; /* Sahifaning pastki qismida */
+  left: 5%;
+  background: radial-gradient(circle, #1a1a1a, #3a3a3a); /* SASS */
+}
+
+.circle:nth-child(7) {
+  width: 220px; /* Kattaroq dumaloq */
+  height: 220px; /* Kattaroq dumaloq */
+  top: 50%; /* Sahifaning yuqori qismida */
+  left: 85%;
+  background: radial-gradient(circle, #272727, #474747); /* Node.js */
+}
+
+.circle:nth-child(8) {
+  width: 200px; /* Kattaroq dumaloq */
+  height: 200px; /* Kattaroq dumaloq */
+  top: 10%; /* Sahifaning yuqori qismida */
+  left: 35%;
+  background: radial-gradient(circle, #1d1d1d, #3d3d3d); /* Python */
+}
+
+.circle:nth-child(9) {
+  width: 220px; /* Kattaroq dumaloq */
+  height: 220px; /* Kattaroq dumaloq */
+  bottom: 1%; /* Sahifaning pastki qismida */
+  right: 15%;
+  background: radial-gradient(circle, #121212, #323232); /* Go */
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+/* Login qutisi dizayni */
+.login-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  z-index: 1;
+  width: 400px;
+}
+
+.login-title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #00d2ff; /* Premium ko'rinish uchun */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.input-field {
+  width: 100%;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  outline: none;
+}
+
+.input-field:focus {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.7);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(45deg, #00d2ff, #3a7bd5); /* Gradient tugmasi */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+  box-shadow: 0 10px 20px rgba(0, 210, 255, 0.5);
+}
+
+@media screen and (max-width: 480px) {
+  .login-box {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .login-title {
+    font-size: 24px;
+  }
+
+  .input-field {
+    font-size: 16px;
+  }
+
+  .submit-btn {
+    font-size: 16px;
+  }
+}
