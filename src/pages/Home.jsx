@@ -22,6 +22,7 @@ const ResponsiveMenu = () => {
     "react",
     "nextjs",
     "taypscript",
+    "barchasi",
     // "figma",
     // "projects",
   ];
@@ -112,7 +113,9 @@ const ResponsiveMenu = () => {
   return (
     <div className="w-full flex items-center justify-between p-4 bg-[#00393F] text-white">
       {/* Notepad Logo */}
-      <div className="text-lg font-bold flex-shrink-0">Not ped</div>
+      <div className="text-lg font-bold flex-shrink-0">
+        <Link to={"/"}>Not ped</Link>
+      </div>
 
       {/* Menu for Larger Screens */}
       <ul className="hidden lg:flex flex-1 justify-center gap-6 items-center overflow-x-auto scrollbar-hide">

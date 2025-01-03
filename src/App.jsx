@@ -69,6 +69,10 @@ function App() {
               path: "projects",
               element: <Projects />,
             },
+            {
+              path: "barchasi",
+              element: <Barchasi />,
+            },
           ],
         },
       ],
