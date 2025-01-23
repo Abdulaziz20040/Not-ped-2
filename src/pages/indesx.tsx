@@ -1,12 +1,9 @@
 import React from "react";
-import "../App.css";
 
 function Index() {
   return (
-    <div className=" background">
-      <div className=" flex items-center justify-center h-screen">
-        Malumot qo'shish uchun menulardan birini tanlang
-      </div>
+    <div className=" flex items-center justify-center h-[90vh]">
+      Malumot qo'shish uchun menulardan birini tanlang
     </div>
   );
 }
