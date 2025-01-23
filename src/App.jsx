@@ -14,6 +14,7 @@ import Projects from "./pages/Projects";
 import Login from "./pages/Login";
 import PrivateRoute from "./pages/PrivateRoute";
 import Barchasi from "./pages/Barchasi";
+import Index from "./pages/indesx";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,7 +28,7 @@ function App() {
           children: [
             {
               index: true,
-              element: <Barchasi />,
+              element: <Index />,
             },
             {
               path: "react",
@@ -46,7 +47,7 @@ function App() {
               element: <Figma />,
             },
             {
-              path: "nextjs",
+              path: "next.js",
               element: <Newxt />,
             },
             {
@@ -54,7 +55,7 @@ function App() {
               element: <Splus />,
             },
             {
-              path: "cshap",
+              path: "c sharp",
               element: <Sshap />,
             },
             {
@@ -71,6 +72,26 @@ function App() {
             },
             {
               path: "barchasi",
+              element: <Barchasi />,
+            },
+            {
+              path: "Vue.js",
+              element: <Barchasi />,
+            },
+            {
+              path: "Angular",
+              element: <Barchasi />,
+            },
+            {
+              path: "Nuxt.js",
+              element: <Barchasi />,
+            },
+            {
+              path: "Node.js",
+              element: <Barchasi />,
+            },
+            {
+              path: "SQL",
               element: <Barchasi />,
             },
           ],

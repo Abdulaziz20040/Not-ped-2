@@ -121,8 +121,8 @@ h2 {
   border-radius: 50%;
   background-color: #00ffff; /* Aqua color */
   color: #ffffff; /* Black color for the icon */
-  width: 40px !important;
-  height: 40px;
+  width: 37px !important;
+  height: 37px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,4 +170,41 @@ h2 {
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome va boshqa WebKit brauzerlari uchun */
+}
+.search {
+  width: 350px !important;
+  height: 40px !important;
+  font-size: 17px;
+  padding-left: 20px;
+}
+@media (max-width: 500px) {
+  .search {
+    width: 300px !important;
+    height: 40px !important;
+    font-size: 17px;
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .resposdesc {
+    font-size: 15px;
+    line-height: 1.5rem /* 24px */;
+  }
+  .search {
+    width: 240px !important;
+    height: 35px !important;
+
+    font-size: 15px;
+    padding-left: 20px;
+  }
+}
+
+.custom-drawer .ant-drawer-content {
+  border-radius: 30px !important; /* Border radiusni qo'shamiz */
+  overflow: hidden !important; /* Tarkibdan chiqmaslik uchun */
+}
+
+.custom-drawer .ant-drawer-close {
+  background-color: transparent; /* X tugmasini ko'rsatmaslik uchun */
 }

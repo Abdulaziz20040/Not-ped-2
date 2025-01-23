@@ -6,3 +6,16 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
+
+.active:hover {
+  background-color: aqua;
+  transform: translateY(-5px); /* Lift the item on hover */
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.5); /* White shadow effect */
+}
+
+.active {
+  background-color: aqua;
+  transform: translateY(-5px); /* Keep it lifted when active */
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.5); /* White shadow effect */
+  border-radius: 15px; /* Ensure the border-radius is applied */
+}

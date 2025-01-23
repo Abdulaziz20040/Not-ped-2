@@ -1,30 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, Popover, Modal, Button } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { HiDotsVertical } from "react-icons/hi";
 import "./home.css";
+import { PiSidebarSimple } from "react-icons/pi";
+import { AiOutlineBars } from "react-icons/ai";
 
 const ResponsiveMenu = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [isEditing, setIsEditing] = useState(false); // Track if we are in editing mode
-  const [newName, setNewName] = useState(localStorage.getItem("name") || ""); // The new name to edit
-  const navigate = useNavigate(); // For navigation after logout
+  const [isEditing, setIsEditing] = useState(false);
+  const [newName, setNewName] = useState(localStorage.getItem("name") || "");
+  const navigate = useNavigate();
+
+  const [activ, setActiv] = useState(0);
+
+  const handleActiv = (index) => {
+    setActiv(index);
+  };
 
   const menuItems = [
-    "javascript",
-    "c++",
-    "html",
-    "bootstrap",
-    "react",
-    "nextjs",
-    "taypscript",
-    "barchasi",
-    // "figma",
-    // "projects",
+    "Javascript",
+    "C++",
+    "Html",
+    "Bootstrap",
+    "React",
+    "Next.js",
+    "Taypscript",
+    "Barchasi",
+    "C sharp",
+    "Python",
+    "Flutter",
+    "Java",
+    "Vue.js",
+    "Angular",
+    "Nuxt.js",
+    "Node.js",
+    "SQL",
   ];
 
   const handleDrawerToggle = () => {
@@ -34,28 +48,23 @@ const ResponsiveMenu = () => {
   const name = localStorage.getItem("name");
 
   useEffect(() => {
-    // Fetch users list if role is available and "admin"
     if (name === "ican") {
-      fetch("https://c0adcbfd27d5ecc2.mokky.dev/user") // Assuming this is the API URL
+      fetch("https://c0adcbfd27d5ecc2.mokky.dev/user")
         .then((res) => res.json())
-        .then((data) => setUsers(data)) // Update state with user data
+        .then((data) => setUsers(data))
         .catch((err) => console.error("Error fetching user data:", err));
     }
   }, [name]);
 
   const handleProfileClick = () => {
-    // Show the modal only if the name in localStorage is "ican"
     if (name === "ican") {
-      setModalVisible(true); // Show the modal
+      setModalVisible(true);
     }
   };
 
   const handleLogout = () => {
-    // Clear the relevant data from localStorage
     localStorage.removeItem("name");
-    localStorage.removeItem("token"); // Remove any other user data stored in localStorage
-
-    // Redirect to the login page
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
@@ -72,8 +81,8 @@ const ResponsiveMenu = () => {
           <button
             className="px-4 py-2 bg-blue-600 text-white rounded"
             onClick={() => {
-              localStorage.setItem("name", newName); // Save to localStorage
-              setIsEditing(false); // Exit edit mode
+              localStorage.setItem("name", newName);
+              setIsEditing(false);
             }}
           >
             Save
@@ -86,13 +95,13 @@ const ResponsiveMenu = () => {
           </button>
           <button
             className="px-4 py-2 w-full text-left text-black hover:bg-teal-600 rounded"
-            onClick={() => setIsEditing(true)} // Enable edit mode
+            onClick={() => setIsEditing(true)}
           >
             Edit
           </button>
           <button
             className="px-4 py-2 w-full text-left text-black hover:bg-teal-600 rounded"
-            onClick={handleLogout} // Call logout function on click
+            onClick={handleLogout}
           >
             Logout
           </button>
@@ -102,7 +111,6 @@ const ResponsiveMenu = () => {
   );
 
   const handleEdit = (user) => {
-    // Handle the editing of user details
     console.log("Editing user:", user);
   };
 
@@ -113,94 +121,76 @@ const ResponsiveMenu = () => {
   return (
     <div className="w-full flex items-center justify-between p-4 bg-[#00393F] text-white">
       {/* Notepad Logo */}
-      <div className="text-lg font-bold flex-shrink-0">
-        <Link to={"/"}>Not ped</Link>
+      <div className="text-lg font-bold flex-shrink-0 flex  items-center gap-2">
+        <div className="flex items-center gap-2">
+          <AiOutlineBars
+            className="text-2xl cursor-pointer"
+            onClick={handleDrawerToggle}
+          />
+        </div>
+        <Link to={"/"}>CodePadUz </Link>
       </div>
 
-      {/* Menu for Larger Screens */}
-      <ul className="hidden lg:flex flex-1 justify-center gap-6 items-center overflow-x-auto scrollbar-hide">
-        {menuItems.map((item) => (
-          <li key={item}>
-            <Link
-              to={`/${item.toLowerCase()}`}
-              className="text-white hover:bg-teal-600 px-3 py-2 rounded whitespace-nowrap"
-            >
-              {item}
-            </Link>
-          </li>
-        ))}
-        <li>
-          <Link to="/cshap">C#</Link>
-        </li>
-      </ul>
-
       {/* Profile Button */}
-      <div className="hidden lg:block">
+      <div className="">
         <div className="flex items-center gap-2">
-          <img
-            className="w-10 h-10 rounded-full"
-            src="https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg"
-            alt="profile"
-          />
           <Popover
             content={profileMenu}
             trigger="click"
-            placement="bottomRight" // Positioning the Popover below the icon and on the right
+            placement="bottomRight"
           >
-            <HiDotsVertical
-              className="text-[22px] cursor-pointer"
+            <img
               onClick={handleProfileClick}
+              className="w-10 h-10 rounded-full cursor-pointer"
+              src="https://i.pinimg.com/736x/31/3c/b6/313cb6df031677742d01dc4449caf4d5.jpg"
+              alt="profile"
             />
           </Popover>
         </div>
       </div>
 
       {/* Bars Icon for Small Screens */}
-      <div className="lg:hidden flex items-center gap-2">
-        <MenuOutlined
-          className="text-2xl cursor-pointer"
-          onClick={handleDrawerToggle}
-        />
-      </div>
 
       {/* Drawer for Small Screens */}
       <Drawer
-        title="Menu"
+        title="CodePadUz Menu"
         placement="right"
         onClose={handleDrawerToggle}
         open={drawerOpen}
         className="lg:hidden"
         width={300}
+        closable={true} // X ikonkasini yashirish uchun
       >
         <ul className="flex flex-col gap-4">
           {menuItems.map((item) => (
             <li key={item}>
-              <Link
+              <NavLink
                 to={`/${item.toLowerCase()}`}
-                className="text-black hover:bg-teal-600 px-3 py-2 rounded whitespace-nowrap"
+                className="text-black px-3 py-2 rounded whitespace-nowrap"
+                activeClassName="bg-teal-600 text-white" // Faol link uchun active klass
+                onClick={handleDrawerToggle} // Link tanlanganda modalni yopish
               >
                 {item}
-              </Link>
+              </NavLink>
             </li>
           ))}
-          <li>
-            <Link to="/cshap">C#</Link>
-          </li>
-          <li>
-            <button className="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-500">
-              Profile
-            </button>
-          </li>
         </ul>
       </Drawer>
 
-      {/* Modal for User List */}
-      <Modal
+      <Drawer
         title="User List"
-        visible={modalVisible}
-        onCancel={handleCloseModal}
-        footer={null}
+        placement="right"
+        onClose={handleCloseModal}
+        open={modalVisible}
         width={600}
+        style={{
+          backgroundColor: "#00393ff3",
+        }}
+        bodyStyle={{
+          borderRadius: "30px", // Burchaklar uchun border-radius
+          overflow: "hidden", // Tarkibdan chiqmaslik uchun
+        }}
+        className="custom-modal" // Custom klass qo'shamiz
       >
         <div>
           <h3>{name}</h3>
@@ -222,7 +212,7 @@ const ResponsiveMenu = () => {
             )}
           </ul>
         </div>
-      </Modal>
+      </Drawer>
     </div>
   );
 };
