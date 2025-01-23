@@ -218,7 +218,7 @@ function Newxt() {
                       />
                     )}
                     {item.eslatma && (
-                      <p className="text-xs sm:text-sm md:text-base">
+                      <p className="resposdesc">
                         <span className="font-bold text-[#14ffff]">
                           Eslatma:
                         </span>{" "}

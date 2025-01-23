@@ -193,13 +193,14 @@ const ResponsiveMenu = () => {
         className="custom-modal" // Custom klass qo'shamiz
       >
         <div>
-          <h3>{name}</h3>
-          <ul className="mt-4">
+          <h3 className="text-white font-bold mb-1">{name}</h3>
+          <hr />
+          <ul className="mt-4 overflow-y-auto hide-scrollbar h-[580px]">
             {users.length > 0 ? (
               users.map((user) => (
                 <li
                   key={user.id}
-                  className="py-2 flex justify-between items-center"
+                  className="py-2 text-white flex justify-between items-center"
                 >
                   <span>{user.name}</span>
                   <span>{user.phoneNumber}</span>
