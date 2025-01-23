@@ -6,7 +6,7 @@ import MonacoEditor from "@monaco-editor/react";
 import "../App.css";
 import nodate from "../remove.png";
 
-function Bootstrap() {
+function Phyton() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -41,7 +41,7 @@ function Bootstrap() {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://c0adcbfd27d5ecc2.mokky.dev/Barchasi"
+        "https://c0adcbfd27d5ecc2.mokky.dev/phyton"
       );
       const data = response.data;
       const filtered = data.filter(
@@ -107,7 +107,7 @@ function Bootstrap() {
         try {
           // Sending the form data to the API
           const response = await axios.post(
-            "https://c0adcbfd27d5ecc2.mokky.dev/bootstrap",
+            "https://c0adcbfd27d5ecc2.mokky.dev/phyton",
             formData
           );
 
@@ -357,4 +357,4 @@ function Bootstrap() {
   );
 }
 
-export default Bootstrap;
+export default Phyton;

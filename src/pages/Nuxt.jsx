@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Input, Drawer, Form, message } from "antd";
 import { FaPlus } from "react-icons/fa";
+import { IoMdSearch } from "react-icons/io";
 import axios from "axios";
 import MonacoEditor from "@monaco-editor/react";
 import "../App.css";
 import nodate from "../remove.png";
 
-function Bootstrap() {
+function Nuxt() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -41,7 +42,7 @@ function Bootstrap() {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://c0adcbfd27d5ecc2.mokky.dev/Barchasi"
+        "https://c0adcbfd27d5ecc2.mokky.dev/nuxt"
       );
       const data = response.data;
       const filtered = data.filter(
@@ -107,7 +108,7 @@ function Bootstrap() {
         try {
           // Sending the form data to the API
           const response = await axios.post(
-            "https://c0adcbfd27d5ecc2.mokky.dev/bootstrap",
+            "https://c0adcbfd27d5ecc2.mokky.dev/nuxt",
             formData
           );
 
@@ -357,4 +358,4 @@ function Bootstrap() {
   );
 }
 
-export default Bootstrap;
+export default Nuxt;

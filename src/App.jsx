@@ -4,17 +4,23 @@ import Rotlayout from "./rotlayout/Rotlayout";
 import All from "./pages/React";
 import Html from "./pages/Html";
 import Bootstrap from "./pages/Bootstrap";
-import Figma from "./pages/figma";
+import Barchasi from "./pages/Barchasi";
 import Newxt from "./pages/Newxt";
 import Splus from "./pages/Splus";
 import Sshap from "./pages/Sshap";
 import Javascrpt from "./pages/Javascrpt";
 import Taypscrpt from "./pages/Taypscrpt";
-import Projects from "./pages/Projects";
 import Login from "./pages/Login";
 import PrivateRoute from "./pages/PrivateRoute";
-import Barchasi from "./pages/Barchasi";
 import Index from "./pages/indesx";
+import Phyton from "./pages/Phyton";
+import Flutter from "./pages/Flutter";
+import Java from "./pages/Java";
+import Vue from "./pages/Vue";
+import Angular from "./pages/Angular";
+import Nuxt from "./pages/Nuxt";
+import Node from "./pages/Node";
+import Sql from "./pages/Sql";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,10 +49,6 @@ function App() {
               element: <Bootstrap />,
             },
             {
-              path: "figma",
-              element: <Figma />,
-            },
-            {
               path: "next.js",
               element: <Newxt />,
             },
@@ -67,32 +69,40 @@ function App() {
               element: <Taypscrpt />,
             },
             {
-              path: "projects",
-              element: <Projects />,
-            },
-            {
               path: "barchasi",
               element: <Barchasi />,
             },
             {
+              path: "python",
+              element: <Phyton />,
+            },
+            {
+              path: "flutter",
+              element: <Flutter />,
+            },
+            {
+              path: "java",
+              element: <Java />,
+            },
+            {
               path: "Vue.js",
-              element: <Barchasi />,
+              element: <Vue />,
             },
             {
-              path: "Angular",
-              element: <Barchasi />,
+              path: "angular",
+              element: <Angular />,
             },
             {
-              path: "Nuxt.js",
-              element: <Barchasi />,
+              path: "nuxt.js",
+              element: <Nuxt />,
             },
             {
-              path: "Node.js",
-              element: <Barchasi />,
+              path: "node.js",
+              element: <Node />,
             },
             {
-              path: "SQL",
-              element: <Barchasi />,
+              path: "sQL",
+              element: <Sql />,
             },
           ],
         },

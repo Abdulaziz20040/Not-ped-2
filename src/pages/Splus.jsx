@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Input, Drawer, Form, message } from "antd";
 import { FaPlus } from "react-icons/fa";
-import { IoMdSearch } from "react-icons/io";
 import axios from "axios";
 import MonacoEditor from "@monaco-editor/react";
 import "../App.css";
@@ -42,7 +41,7 @@ function Splus() {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://c0adcbfd27d5ecc2.mokky.dev/cplus"
+        "https://c0adcbfd27d5ecc2.mokky.dev/scss"
       );
       const data = response.data;
       const filtered = data.filter(
@@ -85,9 +84,11 @@ function Splus() {
               marginRight: "5px",
               backgroundColor: "red",
               borderRadius: "5px",
-              fontWeight: "semibold",
               color: "white",
-              padding: "4px",
+              padding: "2px",
+              paddingRight: "5px",
+              paddingLeft: "5px",
+              fontSize: "13px",
             }}
           >
             {part}
@@ -106,7 +107,7 @@ function Splus() {
         try {
           // Sending the form data to the API
           const response = await axios.post(
-            "https://c0adcbfd27d5ecc2.mokky.dev/cplus",
+            "https://c0adcbfd27d5ecc2.mokky.dev/scss",
             formData
           );
 
@@ -149,24 +150,22 @@ function Splus() {
       >
         <div className="flex items-center gap-3">
           <Button
-            className="add-button"
-            icon={<FaPlus style={{ fontSize: "20px" }} />}
+            className="border border-[#00ffff] rounded-full bg-[#00393ff3] text-white  font-semibold"
+            icon={<FaPlus style={{ fontSize: "16px" }} />}
             onClick={showDrawer}
-            style={{ display: "block", padding: "8px" }}
           />
           <h2 className="font-bold m-0 text-lg sm:text-xl md:text-2xl hidden sm:block">
             Ma'lumot qo'shish
           </h2>
         </div>
 
-        <div className="flex items-center w-[400px] justify-center relative">
+        <div className="flex items-center justify-center relative">
           <Input
-            className="rounded-full w-1/2 h-11 bg-[#EDEFF3] border-none p-3 text-lg sm:w-full sm:text-sm"
+            className="rounded-full search  bg-[#EDEFF3] border-none p-3 text-lg sm:w-full sm:text-sm"
             placeholder="Qidirish"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <IoMdSearch className="absolute top-1/2 right-6 transform -translate-y-1/2 cursor-pointer text-lg text-[#8D9BA8]" />
         </div>
       </div>
 
@@ -198,12 +197,12 @@ function Splus() {
                   className="bg-[#1F2628] p-4 rounded-lg shadow-lg w-full max-w-[700px]"
                   key={item.id}
                 >
-                  <h3 className="text-xs sm:text-sm md:text-base font-semibold mb-2 text-sm sm:text-base md:text-lg">
+                  <h3 className=" font-bold mb-2">
                     <span className="font-bold text-[#14ffff]">Nomi:</span>{" "}
                     {item.name}
                   </h3>
                   {item.description && (
-                    <p className="mb-2 text-xs sm:text-sm md:text-base">
+                    <p className="mb-2 resposdesc">
                       <span className="font-bold text-[#14ffff]">Malumot:</span>{" "}
                       {formatDescription(item.description)}
                     </p>
@@ -218,8 +217,10 @@ function Splus() {
                       />
                     )}
                     {item.eslatma && (
-                      <p className="text-xs sm:text-sm md:text-base">
-                        <span className="font-bold">Eslatma:</span>{" "}
+                      <p className="resposdesc">
+                        <span className="font-bold text-[#14ffff]">
+                          Eslatma:
+                        </span>{" "}
                         {item.eslatma}
                       </p>
                     )}
@@ -227,6 +228,7 @@ function Splus() {
 
                   {item.kod && (
                     <MonacoEditor
+                      className="monaco-editor"
                       height="200px"
                       language="javascript"
                       value={item.kod}
@@ -245,22 +247,21 @@ function Splus() {
       </div>
 
       <Drawer
-        title={<span style={{ color: "white" }}>Ma'lumot qo'shish</span>}
+        title={<span style={{ color: "white" }}>CodePadUz</span>}
         placement="right"
-        width={600}
+        width={500}
         onClose={onClose}
         open={openDrawer}
-        closable={false} // This will hide the close (X) icon
+        closable={true}
         className="bg-[#00393ff3]"
         extra={
           <button
             className="border border-[#00ffff] rounded-full p-2 text-white text-sm font-semibold"
             style={{
-              backgroundColor: "#00ffff",
-              color: "black",
+              color: "white",
               fontSize: "16px",
               padding: "8px 16px",
-              borderRadius: "8px",
+              borderRadius: "18px",
             }}
             onClick={handleSubmit}
           >
@@ -268,19 +269,18 @@ function Splus() {
           </button>
         }
         style={{
-          borderRadius: "16px", // Apply border radius
-          overflow: "hidden", // Ensure content doesn't overflow with rounded corners
+          borderRadius: "30px", // Border radiusni 30px ga o'zgartirdik
+          overflow: "hidden",
           backgroundColor: "#00393ff3",
         }}
         bodyStyle={{
           position: "relative",
-          color: "white", // Set the text color to white
-          overflowY: "scroll", // Enable scrolling
+          color: "white",
+          overflowY: "scroll",
         }}
       >
         <div className="hide-scrollbar h-[650px]">
           <Form form={form} layout="vertical">
-            {/* Name Field - Required */}
             <Form.Item
               label={<span style={{ color: "white" }}>Name</span>}
               name="name"
@@ -294,7 +294,6 @@ function Splus() {
               />
             </Form.Item>
 
-            {/* Description Field - Required */}
             <Form.Item
               label={<span style={{ color: "white" }}>Description</span>}
               name="description"
@@ -311,7 +310,6 @@ function Splus() {
               />
             </Form.Item>
 
-            {/* Image URL Field - Optional */}
             <Form.Item
               label={<span style={{ color: "white" }}>Image URL</span>}
             >
@@ -323,7 +321,6 @@ function Splus() {
               />
             </Form.Item>
 
-            {/* Eslatma Field - Optional */}
             <Form.Item label={<span style={{ color: "white" }}>Eslatma</span>}>
               <Input.TextArea
                 name="eslatma"
@@ -334,17 +331,23 @@ function Splus() {
               />
             </Form.Item>
 
-            {/* Kod Field - Required */}
             <Form.Item
               label={<span style={{ color: "white" }}>Kod</span>}
               name="kod"
             >
-              <Input.TextArea
-                name="kod"
-                rows={4}
-                placeholder="Kod"
+              <MonacoEditor
+                className="monaco-editor"
+                height="200px"
+                language="javascript"
                 value={formData.kod}
-                onChange={handleChange}
+                options={{
+                  theme: "vs-dark",
+                  minimap: { enabled: false },
+                  fontSize: 13,
+                }}
+                onChange={(value) => {
+                  setFormData((prevData) => ({ ...prevData, kod: value }));
+                }}
               />
             </Form.Item>
           </Form>

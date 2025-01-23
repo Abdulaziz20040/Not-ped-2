@@ -23,7 +23,7 @@ function Barchasi() {
   const [noData, setNoData] = useState(false);
   const dataContainerRef = useRef(null);
 
-  const [form] = Form.useForm();
+  const [form] = Form.useForm(); // Add this line to initialize form
 
   const showDrawer = () => {
     setOpenDrawer(true);
@@ -85,9 +85,11 @@ function Barchasi() {
               marginRight: "5px",
               backgroundColor: "red",
               borderRadius: "5px",
-              fontWeight: "semibold",
               color: "white",
-              padding: "4px",
+              padding: "2px",
+              paddingRight: "5px",
+              paddingLeft: "5px",
+              fontSize: "13px",
             }}
           >
             {part}
@@ -99,17 +101,24 @@ function Barchasi() {
   };
 
   const handleSubmit = async () => {
+    // Check if all required fields are filled
     form
       .validateFields()
       .then(async () => {
         try {
+          // Sending the form data to the API
           const response = await axios.post(
             "https://c0adcbfd27d5ecc2.mokky.dev/Barchasi",
             formData
           );
 
+          // Updating the filtered data to include the new entry
           setFilteredData((prevData) => [...prevData, response.data]);
+
+          // Closing the drawer after submitting the data
           setOpenDrawer(false);
+
+          // Reset the form data to its initial state
           setFormData({
             name: "",
             description: "",
@@ -117,7 +126,11 @@ function Barchasi() {
             eslatma: "",
             kod: "",
           });
+
+          // Reset the form fields
           form.resetFields();
+
+          // Success message
           message.success("Ma'lumot muvaffaqiyatli qo'shildi!");
         } catch (error) {
           console.error("Xatolik:", error);
@@ -125,6 +138,7 @@ function Barchasi() {
         }
       })
       .catch((errorInfo) => {
+        // If form validation fails, show an error message
         message.error("Iltimos, barcha maydonlarni to'ldiring!");
       });
   };
@@ -137,24 +151,22 @@ function Barchasi() {
       >
         <div className="flex items-center gap-3">
           <Button
-            className="add-button"
-            icon={<FaPlus style={{ fontSize: "20px" }} />}
+            className="border border-[#00ffff] rounded-full bg-[#00393ff3] text-white  font-semibold"
+            icon={<FaPlus style={{ fontSize: "16px" }} />}
             onClick={showDrawer}
-            style={{ display: "block", padding: "8px" }}
           />
           <h2 className="font-bold m-0 text-lg sm:text-xl md:text-2xl hidden sm:block">
             Ma'lumot qo'shish
           </h2>
         </div>
 
-        <div className="flex items-center w-[250px] sm:w-[350px] md:w-[400px] justify-center relative">
+        <div className="flex items-center justify-center relative">
           <Input
-            className="rounded-full w-full h-11 bg-[#EDEFF3] border-none p-3 text-lg sm:w-full sm:text-sm"
+            className="rounded-full search  bg-[#EDEFF3] border-none p-3 text-lg sm:w-full sm:text-sm"
             placeholder="Qidirish"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <IoMdSearch className="absolute top-1/2 right-6 transform -translate-y-1/2 cursor-pointer text-lg text-[#8D9BA8]" />
         </div>
       </div>
 
@@ -180,18 +192,18 @@ function Barchasi() {
           </div>
         ) : (
           <div className="flex justify-center items-center">
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-4">
               {filteredData.map((item) => (
                 <div
-                  className="bg-[#1F2628] p-4 rounded-lg shadow-lg w-[700px] mx-auto"
+                  className="bg-[#1F2628] p-4 rounded-lg shadow-lg w-full max-w-[700px]"
                   key={item.id}
                 >
-                  <h3 className="text-xs sm:text-sm md:text-base font-semibold mb-2 text-sm sm:text-base md:text-lg">
+                  <h3 className=" font-bold mb-2">
                     <span className="font-bold text-[#14ffff]">Nomi:</span>{" "}
                     {item.name}
                   </h3>
                   {item.description && (
-                    <p className="mb-2 text-xs sm:text-sm md:text-base">
+                    <p className="mb-2 resposdesc">
                       <span className="font-bold text-[#14ffff]">Malumot:</span>{" "}
                       {formatDescription(item.description)}
                     </p>
@@ -206,8 +218,10 @@ function Barchasi() {
                       />
                     )}
                     {item.eslatma && (
-                      <p className="text-xs sm:text-sm md:text-base">
-                        <span className="font-bold">Eslatma:</span>{" "}
+                      <p className="resposdesc">
+                        <span className="font-bold text-[#14ffff]">
+                          Eslatma:
+                        </span>{" "}
                         {item.eslatma}
                       </p>
                     )}
@@ -215,6 +229,7 @@ function Barchasi() {
 
                   {item.kod && (
                     <MonacoEditor
+                      className="monaco-editor"
                       height="200px"
                       language="javascript"
                       value={item.kod}
@@ -233,22 +248,21 @@ function Barchasi() {
       </div>
 
       <Drawer
-        title={<span style={{ color: "white" }}>Ma'lumot qo'shish</span>}
+        title={<span style={{ color: "white" }}>CodePadUz</span>}
         placement="right"
-        width={600}
+        width={500}
         onClose={onClose}
         open={openDrawer}
-        closable={false}
+        closable={true}
         className="bg-[#00393ff3]"
         extra={
           <button
             className="border border-[#00ffff] rounded-full p-2 text-white text-sm font-semibold"
             style={{
-              backgroundColor: "#00ffff",
-              color: "black",
+              color: "white",
               fontSize: "16px",
               padding: "8px 16px",
-              borderRadius: "8px",
+              borderRadius: "18px",
             }}
             onClick={handleSubmit}
           >
@@ -256,7 +270,7 @@ function Barchasi() {
           </button>
         }
         style={{
-          borderRadius: "16px",
+          borderRadius: "30px", // Border radiusni 30px ga o'zgartirdik
           overflow: "hidden",
           backgroundColor: "#00393ff3",
         }}
@@ -308,22 +322,33 @@ function Barchasi() {
               />
             </Form.Item>
 
-            <Form.Item label={<span style={{ color: "white" }}>Reminder</span>}>
-              <Input
+            <Form.Item label={<span style={{ color: "white" }}>Eslatma</span>}>
+              <Input.TextArea
                 name="eslatma"
+                rows={4}
                 placeholder="Eslatma"
                 value={formData.eslatma}
                 onChange={handleChange}
               />
             </Form.Item>
 
-            <Form.Item label={<span style={{ color: "white" }}>Code</span>}>
-              <Input.TextArea
-                name="kod"
-                rows={4}
-                placeholder="Kod"
+            <Form.Item
+              label={<span style={{ color: "white" }}>Kod</span>}
+              name="kod"
+            >
+              <MonacoEditor
+                className="monaco-editor"
+                height="200px"
+                language="javascript"
                 value={formData.kod}
-                onChange={handleChange}
+                options={{
+                  theme: "vs-dark",
+                  minimap: { enabled: false },
+                  fontSize: 13,
+                }}
+                onChange={(value) => {
+                  setFormData((prevData) => ({ ...prevData, kod: value }));
+                }}
               />
             </Form.Item>
           </Form>
