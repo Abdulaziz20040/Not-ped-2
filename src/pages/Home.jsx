@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, Popover, Modal, Button } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { HiDotsVertical } from "react-icons/hi";
 import "./home.css";
-import { PiSidebarSimple } from "react-icons/pi";
 import { AiOutlineBars } from "react-icons/ai";
 
 const ResponsiveMenu = () => {
