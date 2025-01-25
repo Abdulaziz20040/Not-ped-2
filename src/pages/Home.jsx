@@ -121,24 +121,28 @@ const ResponsiveMenu = () => {
       <div className="text-lg font-bold flex-shrink-0 flex  items-center gap-2">
         <div className="flex items-center gap-2">
           <AiOutlineBars
-            className="text-2xl cursor-pointer"
+            className="text-xl sm:text-3xl cursor-pointer"
             onClick={handleDrawerToggle}
           />
+          <Link to={"/"}>
+            <p className="text-sm sm:text-base font-semibold">CodePadUz</p>
+          </Link>
         </div>
-        <Link to={"/"}>CodePadUz </Link>
       </div>
 
       {/* Profile Button */}
       <div className="">
         <div className="flex items-center gap-2">
           <Popover
-            content={profileMenu}
+            content={
+              <div className="text-sm sm:text-base p-2">{profileMenu}</div>
+            }
             trigger="click"
             placement="bottomRight"
           >
             <img
               onClick={handleProfileClick}
-              className="w-10 h-10 rounded-full cursor-pointer"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full cursor-pointer"
               src="https://i.pinimg.com/736x/31/3c/b6/313cb6df031677742d01dc4449caf4d5.jpg"
               alt="profile"
             />
